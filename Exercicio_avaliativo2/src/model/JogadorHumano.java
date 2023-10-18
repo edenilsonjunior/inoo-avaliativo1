@@ -4,20 +4,20 @@ import java.util.Scanner;
 
 public class JogadorHumano extends Jogador {
 
-    private Scanner scanner = new Scanner(System.in);
-
+    
     public JogadorHumano() {
         super();
     }
-
+    
     public JogadorHumano(int resultado) {
         super(resultado);
     }
-
+    
     @Override
     public Coisa getEscolhaCoisa() {
-
+        
         int escolha;
+        Scanner scanner = new Scanner(System.in);
 
         do {
             System.out.printf("Escolha sua jogada:\n0- Pedra\n1- Papel\n2- Tesoura\n");
@@ -33,7 +33,6 @@ public class JogadorHumano extends Jogador {
             return null;
 
         } while ((escolha != 0) || (escolha != 1) || (escolha != 2));
-
 
     }
 
