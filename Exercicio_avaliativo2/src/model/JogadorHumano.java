@@ -21,12 +21,12 @@ public class JogadorHumano extends Jogador {
         int escolha;
 
         do {
-            System.out.println("\n0-Pedra");
+            System.out.println("0-Pedra");
             System.out.println("1-Papel");
             System.out.println("2-Tesoura");
             System.out.printf("Escolha sua jogada: ");
-
             escolha = scanner.nextInt();
+            System.out.printf("\n");
 
             if (escolha == 0)
                 return new Pedra();

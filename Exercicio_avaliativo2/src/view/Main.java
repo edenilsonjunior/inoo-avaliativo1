@@ -21,15 +21,14 @@
 * sobrecarga: ok
 * 
 */
-
 package view;
 
 import java.util.Scanner;
-
 import model.*;
 
 public class Main {
-    
+
+    // Scanner como estatico, para poder usar nao só no main, como nas funcoes
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -45,7 +44,7 @@ public class Main {
                 case 1:
                     jogadorXjogador();
                     break;
-            
+
                 case 2:
                     jogadorXmaquina();
                     break;
@@ -74,21 +73,28 @@ public class Main {
         System.out.printf("Digite sua opção: ");
     }
 
-    public static void jogadorXjogador(){
+    public static void jogadorXjogador() {
+
+        System.out.println("\nJogador 1:");
         Jogador m1 = new JogadorHumano();
-        Jogador m2 = new JogadorHumano();   
+
+        System.out.println("Jogador 2:");
+        Jogador m2 = new JogadorHumano();
 
         imprimeResultado(m1, m2);
     }
 
-    public static void jogadorXmaquina(){
+    public static void jogadorXmaquina() {
+
+        System.out.println("\nJogador 1:");
         Jogador m1 = new JogadorHumano();
-        Jogador m2 = new JogadorRobo();   
+
+        Jogador m2 = new JogadorRobo();
 
         imprimeResultado(m1, m2);
     }
 
-    public static void maquinaXmaquina(){
+    public static void maquinaXmaquina() {
 
         int resultado;
 
@@ -101,7 +107,7 @@ public class Main {
             System.out.printf("\n0- Pedra, 1- Papel, 2- Tesoura:");
             System.out.printf("\nDigite a resposta do primeiro robô: ");
             r1 = input.nextInt();
-    
+
             System.out.printf("\nDigite a resposta do segundo robô: ");
             r2 = input.nextInt();
 
@@ -110,17 +116,16 @@ public class Main {
 
             imprimeResultado(m1, m2);
 
-        }
-        else{
+        } else {
             Jogador m1 = new JogadorRobo();
-            Jogador m2 = new JogadorRobo();   
+            Jogador m2 = new JogadorRobo();
 
             imprimeResultado(m1, m2);
         }
 
     }
 
-    public static void imprimeResultado(Jogador n1, Jogador n2){
+    public static void imprimeResultado(Jogador n1, Jogador n2) {
 
         Coisa escolhaPlayer1 = n1.getEscolha();
         Coisa escolhaPlayer2 = n2.getEscolha();
