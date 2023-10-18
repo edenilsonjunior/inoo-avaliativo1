@@ -2,16 +2,20 @@ package model;
 
 import java.util.Random;
 
-// classe do robo 
 public class JogadorRobo extends Jogador {
 
-    private Random jogadaAleatoria = new Random();
+    public JogadorRobo() {
+        super();
+    }
+
+    public JogadorRobo(int resultado) {
+        super(resultado);
+    }
 
     @Override
     public Coisa getEscolhaCoisa() {
 
-        // escolhe um numero aleatorio de 0 a 2 e retorna um objeto, se der errado,
-        // retorna null
+        Random jogadaAleatoria = new Random();
         int x = jogadaAleatoria.nextInt(3);
 
         if (x == 0)
@@ -25,34 +29,17 @@ public class JogadorRobo extends Jogador {
     }
 
     @Override
-    public Coisa getEscolhaCoisa(String resultado) {
-
-        if (resultado.equals("Pedra"))
-            return new Pedra();
-        else if (resultado.equals("Papel"))
-            return new Papel();
-        else if (resultado.equals("Tesoura"))
-            return new Tesoura();
-        else
-            // se o usuario digitar algo que nao é um dos 3 tipos de jogada,
-            // ele retorna a primeira sobrecarga que irá fazer a jogada aleatória
-            // pelo usuario
-            return getEscolhaCoisa();
-    }
-
-    @Override
     public Coisa getEscolhaCoisa(int resultado) {
 
         if (resultado == 0)
-            return new Pedra();
+        return new Pedra();
         else if (resultado == 1)
             return new Papel();
         else if (resultado == 2)
             return new Tesoura();
         else
-            // se o usuario digitar algo que nao é um dos 3 tipos de jogada,
-            // ele retorna a primeira sobrecarga que irá fazer a jogada aleatória
-            // pelo usuario
-            return getEscolhaCoisa();
+        // ele retorna a primeira sobrecarga que irá perguntar dnv a jogada, 
+        // caso a string esteja errada
+        return getEscolhaCoisa();
     }
 }

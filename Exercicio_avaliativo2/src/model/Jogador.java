@@ -2,19 +2,26 @@ package model;
 
 public abstract class Jogador {
 
-    // atributo protected (apenas humano e robo irao acessar)
+    // contexto: a classe Jogador tem 3 sobrecargas do construtor
+    // caso o usuario nao informe o tipo da "coisa" nos parametros,
+    // ele pergunta ao usuario, se nao ele nao pergunta e ja cria
+    // com base na String resultado
+
     protected Coisa escolhaJogador;
+
+    public Jogador() {
+        this.escolhaJogador = getEscolhaCoisa();
+    }
+
+    public Jogador(int resultado) {
+        this.escolhaJogador = getEscolhaCoisa(resultado);
+    }
 
     public Coisa getEscolha() {
         return escolhaJogador;
     }
 
-    // assinatura do metodo abstrato (Além de sobrecargas caso o jogador queira
-    // manipular o resultado)
     public abstract Coisa getEscolhaCoisa();
 
-    public abstract Coisa getEscolhaCoisa(String resultado);
-
     public abstract Coisa getEscolhaCoisa(int resultado);
-
 }
