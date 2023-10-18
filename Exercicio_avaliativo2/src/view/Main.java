@@ -67,11 +67,11 @@ public class Main {
 
     public static void menu() {
         System.out.printf("\n\n-----PEDRA, PAPEL E TESOURA!-----\n");
-        System.out.printf("Digite sua opção:\n");
         System.out.printf("1- Jogador x Jogador\n");
         System.out.printf("2- Jogador x Máquina\n");
         System.out.printf("3- Máquina x Máquina\n");
         System.out.printf("0- Sair\n");
+        System.out.printf("Digite sua opção: ");
     }
 
     public static void jogadorXjogador(){
@@ -127,7 +127,7 @@ public class Main {
 
         int resultado = escolhaPlayer1.getResultadoBatalha(escolhaPlayer2);
 
-        System.out.printf("\n");
+        System.out.printf("\n-----RESULTADO-----\n");
         System.out.println("Jogador 1: " + escolhaPlayer1.getNome());
         System.out.println("Jogador 2: " + escolhaPlayer2.getNome());
 
@@ -138,5 +138,6 @@ public class Main {
         } else {
             System.out.println("Empate!");
         }
+        System.out.printf("-------------------\n");
     }
 }

@@ -20,7 +20,10 @@ public class JogadorHumano extends Jogador {
         Scanner scanner = new Scanner(System.in);
 
         do {
-            System.out.printf("Escolha sua jogada:\n0- Pedra\n1- Papel\n2- Tesoura\n");
+            System.out.println("\n0-Pedra");
+            System.out.println("1-Papel");
+            System.out.println("2-Tesoura");
+            System.out.printf("Escolha sua jogada: ");
 
             escolha = scanner.nextInt();
 
