@@ -1,26 +1,3 @@
-/*
-* Estrategia:
-* 
-* Fazer do-while enquando a opcao nao foi 0
-* 
-* opcoes:
-* 1- jogador contra jogador
-* 2- jogador contra robo
-* 3- robo contra robo
-* 0- sair
-* 
-* Opcao de confronto unitario ou melhor de 3
-* 
-* Conceitos abordados:
-* 
-* Orientado a objeto: ok
-* encapsulamento: ok
-* getters e setters: ok
-* herança: ok
-* polimorfismo: ok
-* sobrecarga: ok
-* 
-*/
 package view;
 
 import java.util.Scanner;
@@ -28,7 +5,6 @@ import model.*;
 
 public class Main {
 
-    // Scanner como estatico, para poder usar nao só no main, como nas funcoes
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -75,23 +51,106 @@ public class Main {
 
     public static void jogadorXjogador() {
 
-        System.out.println("\nJogador 1:");
-        Jogador m1 = new JogadorHumano();
+        int numero;
+        System.out.printf("\nMelhor de 1 (digite 0) ou Melhor de 3 (digite 1): ");
+        numero = input.nextInt();
 
-        System.out.println("Jogador 2:");
-        Jogador m2 = new JogadorHumano();
+        int vitorias_n1 = 0, vitorias_n2 = 0;
+        int total = 0;
+        if (numero == 1) {
+            
+            while (total != 3) {
+                
+                System.out.printf("\n-----RODADA: %d-----\n", total+1);
 
-        imprimeResultado(m1, m2);
+                System.out.println("Jogador 1:");
+                Jogador m1 = new JogadorHumano();
+        
+                System.out.println("Jogador 2:");
+                Jogador m2 = new JogadorHumano();
+        
+                int aux = imprimeMelhorDeTres(m1, m2);
+                
+                if (aux == 1)
+                    vitorias_n1++;
+                else if (aux == -1)
+                    vitorias_n2++;
+
+                total++;
+            }
+
+            System.out.printf("\n-----RESULTADO da melhor de 3!-----\n");
+
+            if (vitorias_n1 > vitorias_n2)
+                System.out.println("Jogador 1 venceu!");
+            else if(vitorias_n1 < vitorias_n2)
+                System.out.println("Jogador 2 venceu!");
+            else
+            System.out.println("Empate!");
+
+            System.out.printf("-------------------\n");
+        }
+        else if(numero == 0) {
+            System.out.println("\nJogador 1:");
+            Jogador m1 = new JogadorHumano();
+    
+            System.out.println("Jogador 2:");
+            Jogador m2 = new JogadorHumano();
+    
+            imprimeResultado(m1, m2);
+        }
     }
 
     public static void jogadorXmaquina() {
 
-        System.out.println("\nJogador 1:");
-        Jogador m1 = new JogadorHumano();
+        int numero;
+        System.out.printf("\nMelhor de 1 (digite 0) ou Melhor de 3 (digite 1): ");
+        numero = input.nextInt();
 
-        Jogador m2 = new JogadorRobo();
+        int vitorias_n1 = 0, vitorias_n2 = 0;
+        int total = 0;
+        if (numero == 1) {
+            
+            while (total != 3) {
+                
+                System.out.printf("\n-----RODADA: %d-----\n", total+1);
 
-        imprimeResultado(m1, m2);
+                System.out.println("Jogador 1:");
+                Jogador m1 = new JogadorHumano();
+
+                Jogador m2 = new JogadorRobo();
+        
+                int aux = imprimeMelhorDeTres(m1, m2);
+                
+                if (aux == 1)
+                    vitorias_n1++;
+                else if (aux == -1)
+                    vitorias_n2++;
+
+                total++;
+            }
+
+            System.out.printf("\n-----RESULTADO da melhor de 3!-----\n");
+
+            if (vitorias_n1 > vitorias_n2)
+                System.out.println("Jogador 1 venceu!");
+            else if(vitorias_n1 < vitorias_n2)
+                System.out.println("Jogador 2 venceu!");
+            else
+            System.out.println("Empate!");
+
+            System.out.printf("-------------------\n");
+        }
+        else if(numero == 0) {
+            System.out.println("\nJogador 1:");
+            Jogador m1 = new JogadorHumano();
+    
+            System.out.println("Jogador 2:");
+            Jogador m2 = new JogadorRobo();
+    
+            imprimeResultado(m1, m2);
+        }
+
     }
 
     public static void maquinaXmaquina() {
@@ -107,7 +166,7 @@ public class Main {
             System.out.printf("\n0- Pedra, 1- Papel, 2- Tesoura:");
             System.out.printf("\nDigite a resposta do primeiro robô: ");
             r1 = input.nextInt();
-
+ 
             System.out.printf("\nDigite a resposta do segundo robô: ");
             r2 = input.nextInt();
 
@@ -145,4 +204,26 @@ public class Main {
         }
         System.out.printf("-------------------\n");
     }
+
+
+
+    public static int imprimeMelhorDeTres(Jogador n1, Jogador n2){
+        
+        Coisa escolhaPlayer1 = n1.getEscolha();
+        Coisa escolhaPlayer2 = n2.getEscolha();
+
+        int resultado = escolhaPlayer1.getResultadoBatalha(escolhaPlayer2);
+
+        System.out.printf("----->RESULTADO: ");
+
+        if (resultado > 0) {
+            System.out.printf("Jogador 1 venceu a rodada!\n");
+        } else if (resultado < 0) {
+            System.out.printf("Jogador 2 venceu a rodada!\n");
+        } else {
+            System.out.printf("Empate!\n");
+        }
+        return resultado;
+    }        
 }
+

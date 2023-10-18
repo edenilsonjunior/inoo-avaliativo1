@@ -21,9 +21,7 @@ public class JogadorHumano extends Jogador {
         int escolha;
 
         do {
-            System.out.println("0-Pedra");
-            System.out.println("1-Papel");
-            System.out.println("2-Tesoura");
+            System.out.println("0-Pedra | 1-Papel | 2-Tesoura");
             System.out.printf("Escolha sua jogada: ");
             escolha = scanner.nextInt();
             System.out.printf("\n");
