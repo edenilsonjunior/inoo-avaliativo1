@@ -32,14 +32,14 @@ public class JogadorRobo extends Jogador {
     public Coisa getEscolhaCoisa(int resultado) {
 
         if (resultado == 0)
-        return new Pedra();
+            return new Pedra();
         else if (resultado == 1)
             return new Papel();
         else if (resultado == 2)
             return new Tesoura();
         else
-        // ele retorna a primeira sobrecarga que irá perguntar dnv a jogada, 
-        // caso a string esteja errada
-        return getEscolhaCoisa();
+            // ele retorna a primeira sobrecarga que irá perguntar dnv a jogada,
+            // caso a string esteja errada
+            return getEscolhaCoisa();
     }
 }
