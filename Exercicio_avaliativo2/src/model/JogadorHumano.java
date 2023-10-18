@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class JogadorHumano extends Jogador {
 
-    // scanner do tipo static
     private static Scanner scanner = new Scanner(System.in);
 
     public JogadorHumano() {
@@ -17,7 +16,6 @@ public class JogadorHumano extends Jogador {
 
     @Override
     public Coisa getEscolhaCoisa() {
-
         int escolha;
 
         do {
@@ -26,30 +24,21 @@ public class JogadorHumano extends Jogador {
             escolha = scanner.nextInt();
             System.out.printf("\n");
 
-            if (escolha == 0)
-                return new Pedra();
-            else if (escolha == 1)
-                return new Papel();
-            else if (escolha == 2)
-                return new Tesoura();
-            return null;
+            if (escolha == 0) return new Pedra();
+            else if (escolha == 1) return new Papel();
+            else if (escolha == 2)return new Tesoura();
 
         } while ((escolha != 0) || (escolha != 1) || (escolha != 2));
-
+        
+        return null;
     }
 
     @Override
     public Coisa getEscolhaCoisa(int resultado) {
 
-        if (resultado == 0)
-            return new Pedra();
-        else if (resultado == 1)
-            return new Papel();
-        else if (resultado == 2)
-            return new Tesoura();
-        else
-            // ele retorna a primeira sobrecarga que irá perguntar dnv a jogada,
-            // caso a string esteja errada
-            return getEscolhaCoisa();
+        if (resultado == 0) return new Pedra();
+        else if (resultado == 1) return new Papel();
+        else if (resultado == 2) return new Tesoura();
+        else return getEscolhaCoisa();
     }
 }
