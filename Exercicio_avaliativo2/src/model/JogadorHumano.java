@@ -9,18 +9,53 @@ public class JogadorHumano extends Jogador {
     @Override
     public Coisa getEscolhaCoisa() {
 
-        System.out.println("Escolha sua jogada:\n1- Pedra\n2- Papel\n3- Tesoura\n");
+        int escolha;
 
-        int escolha = scanner.nextInt();
+        do {
+            System.out.println("Escolha sua jogada:\n0- Pedra\n1- Papel\n2- Tesoura\n");
 
-        if (escolha == 1)
+            escolha = scanner.nextInt();
+
+            if (escolha == 0)
+                return new Pedra();
+            else if (escolha == 1)
+                return new Papel();
+            else if (escolha == 2)
+                return new Tesoura();
+            return null;
+
+        } while ((escolha != 0) || (escolha != 1) || (escolha != 2));
+
+    }
+
+    @Override
+    public Coisa getEscolhaCoisa(String resultado) {
+
+        if (resultado.equals("Pedra"))
             return new Pedra();
-        else if (escolha == 2)
+        else if (resultado.equals("Papel"))
             return new Papel();
-        else if (escolha == 3)
+        else if (resultado.equals("Tesoura"))
             return new Tesoura();
-        return null;
+        else
+            // se o usuario digitar algo que nao é um dos 3 tipos de jogada,
+            // ele retorna a primeira sobrecarga que irá perguntar dnv a jogada
+            return getEscolhaCoisa();
+    }
 
+    @Override
+    public Coisa getEscolhaCoisa(int resultado) {
+
+        if (resultado == 0)
+            return new Pedra();
+        else if (resultado == 1)
+            return new Papel();
+        else if (resultado == 2)
+            return new Tesoura();
+        else
+            // se o usuario digitar algo que nao é um dos 3 tipos de jogada,
+            // ele retorna a primeira sobrecarga que irá perguntar dnv a jogada
+            return getEscolhaCoisa();
     }
 
 }
