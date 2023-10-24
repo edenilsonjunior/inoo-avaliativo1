@@ -3,6 +3,9 @@
 ## Criador
 Este jogo foi criado por [Edenilson Júnior](https://github.com/edenilsonjunior).
 
+## Imagem do jogo
+![image](https://github.com/edenilsonjunior/inoo-avaliativos/assets/110670578/2b38bf8b-2e77-4ff5-92db-1a2ed0f3483c)
+
 ## Conceitos Abordados
 Neste jogo, diversos conceitos de programação orientada a objetos são abordados, incluindo:
 
