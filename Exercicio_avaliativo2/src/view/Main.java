@@ -1,11 +1,9 @@
 package view;
 
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 import model.*;
 
 public class Main {
-
-    private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
 
@@ -16,6 +14,7 @@ public class Main {
 
             switch (opcao) {
                 case 1:
+
                     jogadorXjogador();
                     break;
 
@@ -28,7 +27,10 @@ public class Main {
                     break;
 
                 case 0:
-                    System.out.println("Obrigado por jogar!");
+                    String titulo = "Fim do programa";
+                    String mensagem = "Obrigado por jogar!";
+
+                    JOptionPane.showMessageDialog(null, mensagem, titulo, JOptionPane.PLAIN_MESSAGE);
                     break;
                 default:
                     break;
@@ -40,23 +42,40 @@ public class Main {
 
     public static int menu() {
 
-        System.out.printf("\n\n-----PEDRA, PAPEL E TESOURA!-----\n");
-        System.out.printf("1- Jogador x Jogador\n");
-        System.out.printf("2- Jogador x Máquina\n");
-        System.out.printf("3- Máquina x Máquina\n");
-        System.out.printf("0- Sair\n");
-        System.out.printf("Digite sua opção: ");
-        return input.nextInt();
+        String answer;
+        String msg = "Escolha sua opção: ";
+        String title = "Menu";
+
+        Object opcoes[] = { "Jogador x Jogador",
+                "Jogador x Máquina",
+                "Máquina x Máquina",
+                "Sair" };
+
+        answer = (String) JOptionPane.showInputDialog(null,
+                msg,
+                title,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                opcoes,
+                opcoes[0]);
+
+        if (answer.equals("Jogador x Jogador"))
+            return 1;
+        else if (answer.equals("Jogador x Máquina"))
+            return 2;
+        else if (answer.equals("Máquina x Máquina"))
+            return 3;
+        else
+            return 0;
+
     }
 
     public static void jogadorXjogador() {
 
-        int numero, vitorias_p1 = 0, vitorias_p2 = 0;
+        String answer = escolhe_qnt_jogada();
 
-        System.out.printf("\nMelhor de 1 (digite 0) ou Melhor de 3 (digite 1): ");
-        numero = input.nextInt();
-
-        if (numero == 1) {
+        if (answer.equals("Melhor de 3")) {
+            int vitorias_p1 = 0, vitorias_p2 = 0;
 
             for (int i = 0; i < 3; i++) {
 
@@ -65,15 +84,17 @@ public class Main {
 
                 int aux = imprime_resultado(p1, p2);
 
-                if (aux == 1) vitorias_p1++;
-                else if (aux == -1) vitorias_p2++;
+                if (aux == 1)
+                    vitorias_p1++;
+                else if (aux == -1)
+                    vitorias_p2++;
             }
 
-            System.out.printf("\n-----RESULTADO MD3!-----\n\n");
-            System.out.println(mostrar_campeao(vitorias_p1, vitorias_p2));
-        } 
-        else if (numero == 0) {
+            String titulo = "Resultado MD3";
+            String mensagem = mostrar_campeao(vitorias_p1, vitorias_p2);
 
+            JOptionPane.showMessageDialog(null, mensagem, titulo, JOptionPane.PLAIN_MESSAGE);
+        } else {
             Jogador p1 = new Jogador(escolhe_jogada(1));
             Jogador p2 = new Jogador(escolhe_jogada(2));
 
@@ -81,87 +102,136 @@ public class Main {
         }
     }
 
-    
+    public static void jogadorXmaquina() {
+
+        String answer = escolhe_qnt_jogada();
+
+        if (answer.equals("Melhor de 3")) {
+            int vitorias_p1 = 0, vitorias_p2 = 0;
+
+            for (int i = 0; i < 3; i++) {
+
+                Jogador p1 = new Jogador(escolhe_jogada(1));
+                Jogador p2 = new Jogador();
+
+                int aux = imprime_resultado(p1, p2);
+
+                if (aux == 1)
+                    vitorias_p1++;
+                else if (aux == -1)
+                    vitorias_p2++;
+            }
+
+            String titulo = "Resultado MD3";
+            String mensagem = mostrar_campeao(vitorias_p1, vitorias_p2);
+
+            JOptionPane.showMessageDialog(null, mensagem, titulo, JOptionPane.PLAIN_MESSAGE);
+        } else {
+            Jogador p1 = new Jogador(escolhe_jogada(1));
+            Jogador p2 = new Jogador();
+
+            imprime_resultado(p1, p2);
+        }
+
+    }
+
+    public static void maquinaXmaquina() {
+
+        String answer = escolhe_qnt_jogada();
+
+        if (answer.equals("Melhor de 3")) {
+            int vitorias_p1 = 0, vitorias_p2 = 0;
+
+            for (int i = 0; i < 3; i++) {
+
+                Jogador p1 = new Jogador();
+                Jogador p2 = new Jogador();
+
+                int aux = imprime_resultado(p1, p2);
+
+                if (aux == 1)
+                    vitorias_p1++;
+                else if (aux == -1)
+                    vitorias_p2++;
+            }
+
+            String titulo = "Resultado MD3";
+            String mensagem = mostrar_campeao(vitorias_p1, vitorias_p2);
+
+            JOptionPane.showMessageDialog(null, mensagem, titulo, JOptionPane.PLAIN_MESSAGE);
+        } else {
+            Jogador p1 = new Jogador();
+            Jogador p2 = new Jogador();
+
+            imprime_resultado(p1, p2);
+        }
+    }
+
+    public static int escolhe_jogada(int jogador) {
+
+        String answer;
+        String msg = "Jogador " + jogador + ":";
+        String title = "Escolha sua jogada:";
+
+        Object opcoes[] = { "Pedra", "Papel", "Tesoura" };
+
+        answer = (String) JOptionPane.showInputDialog(null,
+                msg,
+                title,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                opcoes,
+                opcoes[0]);
+
+        if (answer.equals("Pedra"))
+            return 0;
+        else if (answer.equals("Papel"))
+            return 1;
+        else
+            return 2;
+    }
 
     public static int imprime_resultado(Jogador n1, Jogador n2) {
 
         Coisa escolha1 = n1.getEscolha();
         Coisa escolha2 = n2.getEscolha();
 
-        int resultado1 = escolha1.getResultadoBatalha(escolha2);
-        int resultado2 = escolha2.getResultadoBatalha(escolha1);
+        int r1 = escolha1.getResultadoBatalha(escolha2);
+        int r2 = escolha2.getResultadoBatalha(escolha1);
 
-        String vencedor = mostrar_campeao(resultado1, resultado2);
+        String titulo = "Resultado";
+        String vencedor = mostrar_campeao(r1, r2);
 
-        System.out.printf("----->RESULTADO: ");
-        System.out.printf(vencedor);
+        JOptionPane.showMessageDialog(null, vencedor, titulo, JOptionPane.WARNING_MESSAGE);
 
-        return resultado1;
+        return r1;
     }
 
-    public static String mostrar_campeao(int p1, int p2){
-        if (p1 > p2) return "Jogador 1 venceu!\n";
-        else if (p1 < p2) return "Jogador 2 venceu!\n";
-        else return "Empate!\n";
+    public static String mostrar_campeao(int p1, int p2) {
+        if (p1 > p2)
+            return "Jogador 1 venceu!";
+        else if (p1 < p2)
+            return "Jogador 2 venceu!";
+        else
+            return "Empate!";
     }
 
-    public static int escolhe_jogada(int jogador){
-        System.out.println("Jogador " + jogador + ":");
-        System.out.println("0-Pedra | 1-Papel | 2-Tesoura");
+    public static String escolhe_qnt_jogada() {
+        String answer;
+        String msg = "Melhor de 3 ou melhor de 1?";
+        String title = "Quantidade de jogos";
 
-        System.out.printf("Escolha sua jogada: ");
-        return input.nextInt();
+        Object opcoes[] = { "Melhor de 1", "Melhor de 3" };
 
+        answer = (String) JOptionPane.showInputDialog(null,
+                msg,
+                title,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                opcoes,
+                opcoes[0]);
+
+        return answer;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public static void jogadorXmaquina() {
-
-    }
-
-    public static void maquinaXmaquina() {
-
-    }
 }
