@@ -44,7 +44,7 @@ public class Main {
 
         String answer;
         String msg = "Escolha sua opção: ";
-        String title = "Menu";
+        String title = "Pedra, Papel e Tesoura!";
 
         Object opcoes[] = { "Jogador x Jogador",
                 "Jogador x Máquina",
