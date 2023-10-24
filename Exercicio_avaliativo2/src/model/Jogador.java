@@ -1,27 +1,42 @@
 package model;
 
-public abstract class Jogador {
+import java.util.Random;
 
-    // contexto: a classe Jogador tem 3 sobrecargas do construtor
-    // caso o usuario nao informe o tipo da "coisa" nos parametros,
-    // ele pergunta ao usuario, se nao ele nao pergunta e ja cria
-    // com base na String resultado
+public class Jogador {
 
-    protected Coisa escolhaJogador;
-
+    private Coisa escolha;
+    
+    // Construtores
     public Jogador() {
-        this.escolhaJogador = getEscolhaCoisa();
+        this.escolha = getEscolhaRandom();
     }
-
+    
     public Jogador(int resultado) {
-        this.escolhaJogador = getEscolhaCoisa(resultado);
+        
+        if (resultado == 0) this.escolha = new Pedra();
+        else if (resultado == 1) this.escolha = new Papel();
+        else if (resultado == 2) this.escolha = new Tesoura();
     }
+    
+    // Getters e Setters
 
     public Coisa getEscolha() {
-        return escolhaJogador;
+        return escolha;
     }
 
-    public abstract Coisa getEscolhaCoisa();
+    public void setEscolha(Coisa escolha) {
+        this.escolha = escolha;
+    }
 
-    public abstract Coisa getEscolhaCoisa(int resultado);
+    // Escolher Random
+    private Coisa getEscolhaRandom(){
+
+        Random jogadaAleatoria = new Random();
+        int x = jogadaAleatoria.nextInt(3);
+        
+        if (x == 0) return new Pedra();
+        else if (x == 1) return new Papel();
+        else return new Tesoura();
+    }
+
 }
