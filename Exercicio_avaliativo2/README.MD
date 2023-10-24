@@ -25,10 +25,7 @@ Neste jogo, diversos conceitos de programação orientada a objetos são abordad
 `Pedra`, `Papel` e `Tesoura` são classes filhas da classe abstrata `Coisa`. Elas implementam o método abstrato `getResultadoBatalha` e retornam 1 para ganhou, -1 para perdeu e 0 para empate, armazenando o resultado em `this.resultado`.
 
 ### Classe Jogador
-`Jogador` é uma classe abstrata que possui apenas um atributo protegido, `Coisa escolhaJogador`. Além disso, ela possui um método abstrato, `public abstract Coisa getEscolhaCoisa();`.
-
-### Classes JogadorHumano e JogadorRobo
-`JogadorHumano` e `JogadorRobo` são classes filhas da classe `Jogador`. A diferença entre elas está no método `getEscolhaCoisa()`. Em `JogadorHumano`, a escolha é perguntada ao usuário, enquanto em `JogadorRobo`, a escolha é feita aleatoriamente. Ambas as classes possuem sobrecarga de construtor para permitir que o usuário escolha sua jogada como argumento.
+`Jogador` é uma classe que possui apenas um atributo privado, `Coisa escolha`. Além disso, essa classe possui sobrescrita de construtor, se o usuário escolher jogar com robôs, ele cria um construtor vazio public `Jogador()`, já se o usuário escolhe um jogador humano, ele cria um construtor `public Jogador(int resultado)`.
 
 ### Classe Main
 A classe `Main` contém um loop `do-while` que apresenta um menu de interação ao jogador. O menu inclui as seguintes opções:
@@ -38,7 +35,7 @@ A classe `Main` contém um loop `do-while` que apresenta um menu de interação 
 3. Robô contra Robô
 0. Sair
 
-O jogador pode escolher uma das opções digitando o número correspondente, e o jogo seguirá de acordo com a escolha.
+O jogador pode escolher uma das opções, e o jogo seguirá de acordo com a escolha, após isso, o programa pergunta se o usuário quer uma melhor de 1 ou melhor de 3.
 
 ## Como jogar
 
