@@ -200,7 +200,11 @@ public class Main {
         int r2 = escolha2.getResultadoBatalha(escolha1);
 
         String titulo = "Resultado";
-        String vencedor = mostrar_campeao(r1, r2);
+        String vencedor;
+
+        vencedor = "Jogador 1: " + n1.getEscolha().getNome() + "\n";
+        vencedor += "Jogador 2: " + n2.getEscolha().getNome() + "\n";
+        vencedor += mostrar_campeao(r1, r2);
 
         JOptionPane.showMessageDialog(null, vencedor, titulo, JOptionPane.WARNING_MESSAGE);
 

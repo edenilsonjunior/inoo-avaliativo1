@@ -1,8 +1,8 @@
 package model;
 
-public class Pedra extends Coisa{
-    
-    public Pedra(){
+public class Pedra extends Coisa {
+
+    public Pedra() {
         super("Pedra");
     }
 
@@ -10,9 +10,9 @@ public class Pedra extends Coisa{
     public int getResultadoBatalha(Coisa outroJogador) {
         int resultado;
 
-        if (outroJogador instanceof Tesoura) 
+        if (outroJogador instanceof Tesoura)
             resultado = 1; // ganhou
-        else if (outroJogador instanceof Papel) 
+        else if (outroJogador instanceof Papel)
             resultado = -1; // perdeu
         else
             resultado = 0; // empate

@@ -1,11 +1,11 @@
 package model;
 
 public abstract class Coisa {
-    
+
     private String nome;
     protected int resultado;
 
-    public Coisa(String nome){
+    public Coisa(String nome) {
         this.nome = nome;
     }
 
