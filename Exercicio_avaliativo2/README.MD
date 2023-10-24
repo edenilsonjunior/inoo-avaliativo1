@@ -25,7 +25,7 @@ Neste jogo, diversos conceitos de programação orientada a objetos são abordad
 `Pedra`, `Papel` e `Tesoura` são classes filhas da classe abstrata `Coisa`. Elas implementam o método abstrato `getResultadoBatalha` e retornam 1 para ganhou, -1 para perdeu e 0 para empate, armazenando o resultado em `this.resultado`.
 
 ### Classe Jogador
-`Jogador` é uma classe que possui apenas um atributo privado, `Coisa escolha`. Além disso, essa classe possui sobrescrita de construtor, se o usuário escolher jogar com robôs, ele cria um construtor vazio public `Jogador()`, já se o usuário escolhe um jogador humano, ele cria um construtor `public Jogador(int resultado)`.
+`Jogador` é uma classe que possui apenas um atributo privado, `Coisa escolha`. Além disso, essa classe possui sobrescrita de construtor, se o usuário escolher jogar com robôs, ele cria um construtor vazio `public Jogador()`, já se o usuário escolhe um jogador humano, ele cria um construtor `public Jogador(int resultado)`.
 
 ### Classe Main
 A classe `Main` contém um loop `do-while` que apresenta um menu de interação ao jogador. O menu inclui as seguintes opções:
